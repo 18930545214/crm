@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mapper.OrdersMapper">
+
+    <resultMap type="com.hwua.pojo.Orders" id="OrdersMap">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="orderNum" column="orderNum" jdbcType="VARCHAR"/>
+        <result property="orderTime" column="orderTime" jdbcType="TIMESTAMP"/>
+        <result property="peopleCount" column="peopleCount" jdbcType="INTEGER"/>
+        <result property="orderDesc" column="orderDesc" jdbcType="VARCHAR"/>
+        <result property="payType" column="payType" jdbcType="INTEGER"/>
+        <result property="orderStatus" column="orderStatus" jdbcType="INTEGER"/>
+        <result property="productId" column="productId" jdbcType="VARCHAR"/>
+        <result property="memberId" column="memberId" jdbcType="VARCHAR"/>
+        <collection property="products" ofType="com.hwua.pojo.Product" javaType="java.util.List">
+            <result property="productName" column="productName" jdbcType="VARCHAR"/>
+            <result property="productPrice" column="productPrice" jdbcType="OTHER"/>
+        </collection>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryByproductId" resultMap="OrdersMap">
+        select orders.id,orderNum,productName,productPrice,orderDesc,payType,productId,memberId,peopleCount,orderTime,orderStatus
+        from product,orders
+        where product.id=orders.productId
+        and orders.productId=#{productId}
+    </select>
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrdersMap">
+        select
+          id, orderNum, orderTime, peopleCount, orderDesc, payType, orderStatus, productId, memberId
+        from crm.orders
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="OrdersMap">
+        SELECT
+            orders.id,
+            orders.orderNum,
+            orders.orderTime,
+            orders.peopleCount,
+            orders.orderDesc,
+            orders.payType,
+            orders.orderStatus,
+            orders.productId,
+            orders.memberId,
+            product.productName,
+            product.productPrice
+        FROM
+            orders ,product
+        WHERE
+            orders.productId = product.id
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into crm.orders values (REPLACE(UUID(),"-",""),#{ordernum}, #{ordertime}, #{peoplecount}, #{orderdesc}, #{paytype}, #{orderstatus}, #{productid}, #{memberid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update crm.orders
+        <set>
+            <if test="orderNum != null and orderNum != ''">
+                orderNum = #{ordernum},
+            </if>
+            <if test="orderTime != null">
+                orderTime = #{ordertime},
+            </if>
+            <if test="peopleCount != null">
+                peopleCount = #{peoplecount},
+            </if>
+            <if test="orderDesc != null and orderDesc != ''">
+                orderDesc = #{orderdesc},
+            </if>
+            <if test="payType != null">
+                payType = #{paytype},
+            </if>
+            <if test="orderStatus != null">
+                orderStatus = #{orderstatus},
+            </if>
+            <if test="productId != null and productId != ''">
+                productId = #{productid},
+            </if>
+            <if test="memberId != null and memberId != ''">
+                memberId = #{memberid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from crm.orders where id = #{id}
+    </delete>
+
+</mapper>

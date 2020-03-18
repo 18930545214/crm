@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mapper.UsersMapper">
+
+    <resultMap type="com.hwua.pojo.Users" id="UsersMap">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+        <result property="phoneNum" column="phoneNum" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UsersMap">
+        select
+          id, email, username, PASSWORD, phoneNum, STATUS
+        from crm.users
+        where id = #{id}
+    </select>
+    <select id="queryByName" resultMap="UsersMap">
+        select
+          id, email, username, PASSWORD, phoneNum, STATUS
+        from crm.users
+        where username = #{username}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="UsersMap">
+        select
+          id, email, username, PASSWORD, phoneNum, STATUS
+        from crm.users
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into crm.users values (UUID(),#{email}, #{username}, #{password}, #{phoneNum}, #{status})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update crm.users
+        <set>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                PASSWORD = #{password},
+            </if>
+            <if test="phoneNum != null and phoneNum != ''">
+                phoneNum = #{phonenum},
+            </if>
+            <if test="status != null">
+                STATUS = #{status},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from crm.users where id = #{id}
+    </delete>
+
+</mapper>
