@@ -27,7 +27,6 @@ public class OrdersServiceImpl implements OrdersService {
      * @return 实例对象
      */
     @Override
-    @RequiresPermissions(value = {"order:query"})
     public Orders queryById(String id) {
         return this.ordersMapper.queryById(id);
     }
