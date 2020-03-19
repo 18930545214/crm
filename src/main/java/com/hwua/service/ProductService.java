@@ -32,7 +32,7 @@ public interface ProductService {
      * @param product 实例对象
      * @return 实例对象
      */
-    Product insert(Product product);
+    Product insert(Product product)throws Exception;
 
     /**
      * 修改数据
@@ -40,7 +40,7 @@ public interface ProductService {
      * @param product 实例对象
      * @return 实例对象
      */
-    Product update(Product product);
+    Product update(Product product)throws Exception;
 
     /**
      * 通过主键删除数据
@@ -48,6 +48,6 @@ public interface ProductService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(String id);
+    int deleteById(String id)throws Exception;
 
 }

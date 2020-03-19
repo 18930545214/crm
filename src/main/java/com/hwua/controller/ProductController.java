@@ -61,7 +61,6 @@ public class ProductController {
     public Map<String,Object> insert(Product product) throws Exception{
         map.clear();
         product = productService.insert(product);
-        luceneProService.addDocument(product);
         if (product!=null){
             map.put("info","success");
         }else {
@@ -72,13 +71,8 @@ public class ProductController {
     @DeleteMapping("/delete")
     public Map<String,Object> delete(String id) throws Exception{
         map.clear();
-        boolean flag = false;
-        String[] pid = id.split("#");
-        for (int i = 1;i<pid.length;i++){
-            flag = productService.deleteById(pid[i]);
-            luceneProService.deleteDocument(pid[i]);
-        }
-        if (flag){
+        int i = productService.deleteById(id);
+        if (i>0){
             map.put("info","success");
         }else {
             map.put("info","failure");
@@ -89,13 +83,8 @@ public class ProductController {
     public Map<String,Object> update(Product product) throws Exception{
         Product update = null;
         map.clear();
-        String[] pid = product.getId().split("#");
-        for (int i = 1;i<pid.length;i++){
-            product.setId(pid[i]);
-            update = productService.update(product);
-            luceneProService.updateDocument(update);
-        }
-        if (update!=null){
+        product = productService.update(product);
+        if (product!=null){
             map.put("info","success");
         }else {
             map.put("info","failure");

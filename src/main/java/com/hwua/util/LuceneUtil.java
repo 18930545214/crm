@@ -28,7 +28,7 @@ public class LuceneUtil {
     }
     public static IndexWriter indexWriter() throws Exception{
         //指定索引库的路径
-        Directory directory = FSDirectory.open(new File("c:/springboot_crm_lucene").toPath());
+        Directory directory = FSDirectory.open(new File("c:/crm_lucene").toPath());
         //创建索引库写入对象,并告知写到哪里,使用指定的配置(分析器,默认使用的是标准分析器StandardAnalyzer)
         IndexWriter indexWriter = new IndexWriter(directory, new IndexWriterConfig(new IKAnalyzer()));
         return indexWriter;

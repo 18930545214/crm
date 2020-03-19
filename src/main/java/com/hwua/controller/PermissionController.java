@@ -3,12 +3,9 @@ package com.hwua.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hwua.pojo.Permission;
-import com.hwua.pojo.Role;
 import com.hwua.service.PermissionService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,17 +25,6 @@ public class PermissionController {
     @Autowired
     private PermissionService permissionService;
     Map<String,Object> map = new HashMap<>();
-
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public Permission selectOne(String id) {
-        return null;
-    }
     /**
      * 查询所有数据数据
      *

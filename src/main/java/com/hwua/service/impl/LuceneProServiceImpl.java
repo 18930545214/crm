@@ -36,7 +36,7 @@ public class LuceneProServiceImpl implements LuceneProService {
     @Override
     public List<Product> searchProsByTerm(String fieldName, String term,  Integer count) throws Exception {
         ArrayList<Product> products = new ArrayList<>();
-        Directory directory = FSDirectory.open(new File("c:/springboot_crm_lucene").toPath());
+        Directory directory = FSDirectory.open(new File("c:/crm_lucene").toPath());
         IndexReader indexReader = DirectoryReader.open(directory);
         IndexSearcher indexSearcher = new IndexSearcher(indexReader);
         //创建一个QueryParser对象

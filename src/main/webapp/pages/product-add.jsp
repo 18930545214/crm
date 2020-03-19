@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -59,7 +59,7 @@
 	href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/layer/layer.js"></script>
 	<script>
 		$(function () {
@@ -71,7 +71,7 @@
 								layer.msg('添加成功', {icon: 6});
 								$(".form-control").val("")
 							} else {
-								layer.msg('添加失败', {icon: 5});
+								layer.msg('权限不足', {icon: 5});
 							}
 						})
 			});
@@ -192,13 +192,7 @@
 	</div>
 
 
-	<script
-		src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js"></script>
-	<script>
-		$.widget.bridge('uibutton', $.ui.button);
-	</script>
+
 	<script
 		src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script

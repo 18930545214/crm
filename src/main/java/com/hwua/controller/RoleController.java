@@ -2,17 +2,12 @@ package com.hwua.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hwua.pojo.Permission;
 import com.hwua.pojo.Role;
 import com.hwua.pojo.RolePermission;
-import com.hwua.pojo.Users;
-import com.hwua.service.PermissionService;
 import com.hwua.service.RoleService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +26,6 @@ public class RoleController {
      */
     @Autowired
     private RoleService roleService;
-    @Autowired
-    private PermissionService permissionService;
 
     Map<String,Object> map = new HashMap<>();
     /**
@@ -50,7 +43,6 @@ public class RoleController {
             roles = roleService.queryAll();
         }
         PageInfo<Role> pageInfo = new PageInfo<>(roles);
-        System.out.println(pageInfo);
         return pageInfo;
     }
     /**

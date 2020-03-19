@@ -59,7 +59,7 @@
 	href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery-2.2.3.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/layer/layer.js"></script>
 	<script>
 		$(function () {
@@ -154,13 +154,6 @@
 	</div>
 
 
-	<script
-		src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/plugins/jQueryUI/jquery-ui.min.js"></script>
-	<script>
-		$.widget.bridge('uibutton', $.ui.button);
-	</script>
 	<script
 		src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script

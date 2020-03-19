@@ -83,7 +83,6 @@ public class RoleServiceImpl implements RoleService {
         int res = 0;
         String[] permissionId = rolePermission.getPermissionId().split("#");
         for (int i = 1;i<permissionId.length;i++){
-            System.out.println(permissionId[i]);
             rolePermission.setPermissionId(permissionId[i]);
             res = rolePermissionMapper.insert(rolePermission);
         }

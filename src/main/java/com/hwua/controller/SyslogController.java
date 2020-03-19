@@ -25,7 +25,7 @@ public class SyslogController {
     /**
      * 通过主键查询单条数据
      *
-     * @return 单条数据
+     * @return 对象列表
      */
     @GetMapping("queryAll")
     public ModelAndView queryAll() {

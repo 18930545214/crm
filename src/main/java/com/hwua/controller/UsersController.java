@@ -81,7 +81,6 @@ public class UsersController {
         PageHelper.startPage(pageNo, pageSize);
         List<Users> users = usersService.queryAll();
         PageInfo<Users> pageInfo = new PageInfo<>(users);
-        System.out.println(pageInfo);
         return pageInfo;
     }
     /**
@@ -104,7 +103,6 @@ public class UsersController {
     @GetMapping("show/{id}")
     public ModelAndView show(@PathVariable("id") String id) {
         Users users = usersService.queryById(id);
-        System.out.println(users);
         ModelAndView mv = new ModelAndView("user-show");
         mv.addObject("users",users);
         return mv;
